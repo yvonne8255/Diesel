@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Diesel Consumption Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <main class="dd">
+    <header>
+      <h1>Diesel consumption</h1>
+      <p class="sub">Diesel volume in litres, Jan to 19 Sep 2026. Includes every product name containing "Diesel" (Diesel, [3] Diesel, A Diesel). AdBlue is excluded.</p>
+    </header>
+
+    <section class="card">
+      <h2>Overall fleet total</h2>
+      <p class="note">Diesel dispensed, Jan to 19 Sep 2026</p>
+      <div class="kpis">
+        <div class="kpi main"><div class="lbl">Total diesel</div><div class="val" id="kpi-total">—</div><div class="unit">L, all diesel product names</div></div>
+        <div class="kpi"><div class="lbl">Fill transactions</div><div class="val" id="kpi-fills">—</div><div class="unit">fills</div></div>
+        <div class="kpi"><div class="lbl">Vehicles fuelled</div><div class="val" id="kpi-veh">—</div><div class="unit">plates</div></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Diesel litres by month</h2>
+      <p class="note">September covers 1 to 19 Sep only. Months come from the transaction date.</p>
+      <div class="chart" id="monthly-chart"></div>
+    </section>
+
+    <section class="card">
+      <h2>Top 10 item groups by month</h2>
+      <p class="note">Diesel litres, ranked by total. "All other groups" holds the remaining named groups and unmapped rows. Shading shows each cell against the largest in its row.</p>
+      <div class="scroll">
+        <table id="groups-table">
+          <thead><tr><th>#</th><th>Item group</th><th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th><th>Jul</th><th>Aug</th><th>Sep</th><th>Total</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="foot">GS-Lorry Crane is the label on GoldPlus and Victor card rows, so some trucks appear under both Lorry Crane and GS-Lorry Crane.</p>
+    </section>
+
+    <section class="card">
+      <h2>Top 10 vehicles</h2>
+      <p class="note">Total litres per licence plate, with the item group on its rows and tonnage where known.</p>
+      <div class="scroll">
+        <table id="veh-table">
+          <thead><tr><th>#</th><th>Vehicle</th><th class="tl">Item group</th><th>Tons</th><th>Fills</th><th>Litres</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Top 10 vehicles by item group</h2>
+      <p class="note">Pick an item group. Diesel litres by month, ranked by total. Groups ordered by volume.</p>
+      <div id="gv-tabs" class="tabs" role="tablist"></div>
+      <div class="scroll">
+        <table id="gv-table">
+          <thead><tr><th>#</th><th>Vehicle</th><th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th><th>Jul</th><th>Aug</th><th>Sep</th><th>Total</th><th>Fills</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="foot">Groups with fewer than 10 vehicles list all of them. Each group is ranked on its own rows.</p>
+    </section>
+
+    <p class="foot">Source: ##Diesel 2026.xlsx (Append1). Data files are in <code>public/data</code>.</p>
+  </main>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
